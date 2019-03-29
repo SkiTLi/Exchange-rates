@@ -32,7 +32,7 @@ public class Quotation {
         public int compare(Quotation one, Quotation other) {
             if (one.getPosition() > other.getPosition()) return -1;
             if (one.getPosition() == other.getPosition()) return 0;
-                //if(this.age > p.getAge()) return 1;
+
             else return 1;
         }
     };

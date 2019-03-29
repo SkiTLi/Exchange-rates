@@ -1,7 +1,7 @@
 package com.sktl.nbrbcurrency;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -25,30 +25,17 @@ public class Parser {
         this.mContext = context;
         this.str = str;
 
-//        storage = new PersistantStorage();
-//        storage.init(mContext);
-    }
-
-    public String getResultString() {
-        return result;
     }
 
 
     public List<Quotation> getRates(String str) {
 
 
-
         quotations = new ArrayList<>();
         Quotation quotation;
-        String path = null;
-        String extension = null;
-        String fullPath = null;
-        String status = null;
 
 
         try {
-// [{"Cur_ID":170,"Date":"2019-03-21T00:00:00","Cur_Abbreviation":"AUD","Cur_Scale":1,"Cur_Name":"Австралийский доллар","Cur_OfficialRate":1.4935},
-//{"Cur_ID":191,"Date":"2019-03-21T00:00:00","Cur_Abbreviation":"BGN","Cur_Scale":1,"Cur_Name":"Болгарский лев","Cur_OfficialRate":1.2219},
 
 
             JSONArray results = new JSONArray(str);
@@ -94,7 +81,7 @@ public class Parser {
                                 + storage.getProperty(quotation.getId()));
 
                     } else {
-                        if (storage.hasProperty(quotation.getAbbreviation())){
+                        if (storage.hasProperty(quotation.getAbbreviation())) {
                             quotation.setPosition(storage.getProperty(quotation.getAbbreviation()));
                         }
                     }
@@ -108,7 +95,6 @@ public class Parser {
             e.printStackTrace();
             Log.d(TAG, e.toString());
         }
-
 
 
         Collections.sort(quotations, Quotation.COMPARE_BY_POSITION);

@@ -11,7 +11,6 @@ public class PersistantStorage {
 
     private static SharedPreferences settings = null;
 
-    private static boolean positionAndIsChecked = false;
     private static SharedPreferences.Editor editor = null;
     private static Context context = null;
 
@@ -22,7 +21,6 @@ public class PersistantStorage {
 
     private static void init() {
         settings = context.getSharedPreferences(STORAGE_NAME, Context.MODE_PRIVATE);
-//        settings = context.getSharedPreferences(STORAGE_NAME, Context.MODE_MULTI_PROCESS);
         editor = settings.edit();
     }
 

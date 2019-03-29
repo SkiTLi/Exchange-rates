@@ -24,7 +24,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     private Context mContext;
     private int numberItems;
     private PersistantStorage storage;
-    private int clicks;
+
 
     public SettingsRVAdapter(ArrayList<Quotation> arrayList) {
         mArrayList = arrayList;
@@ -40,8 +40,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
         Context context;
         context = viewGroup.getContext();
         int layoutId = R.layout.item_view_settings;
-//        LayoutInflater layoutInflater = LayoutInflater.from(context);
-//        View view = layoutInflater.inflate(layoutId, viewGroup, false);
+
         View view = LayoutInflater.from(context).inflate(layoutId, viewGroup, false);
         SettingsRVViewHolder myViewHolder = new SettingsRVViewHolder(view);
 
@@ -158,8 +157,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
         TextView textViewName;
         TextView textViewAbr;
         TextView textViewScale;
-        TextView textViewId;
-        LinearLayout linearLayout;
+
         Switch sw;
         ImageButton imageButton;
 

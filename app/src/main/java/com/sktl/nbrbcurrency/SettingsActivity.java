@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,7 +64,7 @@ public class SettingsActivity extends AppCompatActivity {
             touchHelper.attachToRecyclerView(recyclerView);
 
 
-//            Log.d(TAG, quotations.toString());
+
 
 
         }
@@ -83,7 +82,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-//        storage = new PersistantStorage();
+
 
 
         storage.init(this);
@@ -97,25 +96,7 @@ public class SettingsActivity extends AppCompatActivity {
         RequestTaskInner rts = new RequestTaskInner();
         rts.execute(request);
 
-/*//проба
-        for (int i=0; i<10; i++) {
-            Quotation quotation = new Quotation();
-            quotation.setId(String.valueOf(i*1111));
-            quotation.setDate(String.valueOf(i*1111).concat(String.valueOf(i*11)).concat(String.valueOf(i*11)));
-            quotation.setAbbreviation("SKT "+String.valueOf(i));
-            quotation.setName("Скитлийских фунтов");
-            quotation.setScale(String.valueOf(i*10));
-            quotation.setRate(String.valueOf(i*1.111));
-            quotations.add(quotation);
-        }
-*/
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setHomeButtonEnabled(true);
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-
-
-//        Log.d(TAG, quotations.toString());
     }
 
     @Override
@@ -153,19 +134,5 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        if (storage.hasProperty("visited")) {
-            Log.d(TAG, "we in onResume() \n"
-                    + "\nBGN = "
-                    + storage.getProperty("BGN")
-                    + "\nEUR = "
-                    + storage.getProperty("EUR")
-                    + "\nUSD = "
-                    + storage.getProperty("USD")
-                    + "\nRUB = "
-                    + storage.getProperty("RUB")
-                    + "\nSEK = "
-                    + storage.getProperty("SEK")
-            );
-        }
     }
 }
