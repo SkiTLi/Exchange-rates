@@ -1,7 +1,6 @@
 package com.sktl.nbrbcurrency;
 
 import android.net.Uri;
-import android.support.annotation.RequiresPermission;
 import android.util.Log;
 
 import java.io.IOException;
@@ -19,7 +18,7 @@ public class Util {
 
 
     private static final String ONDATE = "onDate="; //?onDate=2016-7-6&Periodicity=0
-    private static final String PERIODICITY = "Periodicity=0"; //сегодня
+    private static final String PERIODICITY = "Periodicity=0"; //today
 
 
     public static URL generateURL(String date) {

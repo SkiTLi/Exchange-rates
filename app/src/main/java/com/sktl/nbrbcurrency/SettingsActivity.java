@@ -30,7 +30,7 @@ public class SettingsActivity extends AppCompatActivity {
     private SettingsRVAdapter adapter;
     private List<Quotation> quotations;
     private LinearLayoutManager layoutManager;
-    private PersistantStorage storage;
+    private PersistentStorage storage;
 
     public class RequestTaskInner extends AsyncTask<URL, Void, String> {
 
@@ -58,15 +58,10 @@ public class SettingsActivity extends AppCompatActivity {
             layoutManager = new LinearLayoutManager(getBaseContext());
             recyclerView.setLayoutManager(layoutManager);
 
-            //добавляем swipe/drop
+            //the adding swipe/drop
             ItemTouchHelper.Callback callback = new TouchHelper(adapter);
             ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
             touchHelper.attachToRecyclerView(recyclerView);
-
-
-
-
-
         }
     }
 
@@ -82,8 +77,6 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-
-
 
         storage.init(this);
 
@@ -119,7 +112,7 @@ public class SettingsActivity extends AppCompatActivity {
                 Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
                 startActivity(intent);
 
-                Toast.makeText(this, "Настройки установлены", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "Settings set");
 
 
                 this.finish();

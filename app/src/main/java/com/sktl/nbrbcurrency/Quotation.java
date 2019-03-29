@@ -11,7 +11,6 @@ public class Quotation {
     private String name;
     private String scale;
     private String rate;
-    private boolean chosen;
     private int position;
 
     @Override
@@ -22,7 +21,6 @@ public class Quotation {
                 ", name='" + name + '\'' +
                 ", scale='" + scale + '\'' +
                 ", rate='" + rate + '\'' +
-                ", isChosen='" + chosen + '\'' +
                 ", position='" + position + '\'' +
                 '}' + "\n";
     }
@@ -36,15 +34,6 @@ public class Quotation {
             else return 1;
         }
     };
-
-
-    public boolean isChosen() {
-        return chosen;
-    }
-
-    public void setChosen(boolean choose) {
-        this.chosen = choose;
-    }
 
     public String getId() {
         return id;

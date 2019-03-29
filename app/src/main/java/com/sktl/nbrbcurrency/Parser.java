@@ -14,12 +14,12 @@ import java.util.List;
 
 public class Parser {
     private static final String TAG = "sssP";
-    Context mContext;
-    String str;
-    String result = ""; //отчет
-    List<Quotation> quotations;
+    private Context mContext;
+    private String str;
+    private String result = ""; //report
+    private List<Quotation> quotations;
 
-    private PersistantStorage storage;
+    private PersistentStorage storage;
 
     public Parser(Context context, String str) {
         this.mContext = context;
@@ -55,14 +55,13 @@ public class Parser {
                     quotation.setScale(resultsObject.getString("Cur_Scale"));
                     quotation.setRate(resultsObject.getString("Cur_OfficialRate"));
                     /**
-                     * если position положительный, значит мы его показываем,
-                     * в противном случае - не показываем
+                     * if position is positive, then we show it,
+                     * otherwise - do not show
                      */
                     quotation.setPosition(i * (-1));
                     if (resultsObject.getString("Cur_Abbreviation").equals("USD")
                             || resultsObject.getString("Cur_Abbreviation").equals("RUB")
                             || resultsObject.getString("Cur_Abbreviation").equals("EUR")) {
-                        quotation.setChosen(true);
                         quotation.setPosition(quotation.getPosition() * (-1));
                     }
 
@@ -87,7 +86,7 @@ public class Parser {
                     }
                     quotations.add(quotation);
                 }
-                //поменяй знак на - для обнуления настроек
+                //value must be negative - to reset settings
                 storage.addProperty("visited", 1);
             }
 

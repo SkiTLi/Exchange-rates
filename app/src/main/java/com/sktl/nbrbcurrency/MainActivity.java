@@ -13,8 +13,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import com.sktl.nbrbcurrency.libs.TinyDB;
 
@@ -23,6 +21,7 @@ import java.net.URL;
 
 import java.util.ArrayList;
 
+import java.util.Collections;
 import java.util.List;
 
 import static com.sktl.nbrbcurrency.Util.getResponseFromURL;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Quotation> quotationsTomorrow;
     private List<Quotation> quotationsYesterday;
     private LinearLayoutManager layoutManager;
-    private PersistantStorage storage;
+    private PersistentStorage storage;
     private Util util;
     private UsedDate date;
     private RequestTaskInner rts;
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
 
         storage.init(this);
 
-        //пдключили стороннюю юиюлиотеку по сохранению объектов в SharedPreferences
+        //connected a third-party library on the preservation of objects in SharedPreferences
         tinydb = new TinyDB(this);
 
         date = new UsedDate();
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
             tinydb.putListObject("today", quotationsToday);
             tinydb.putListObject("tomorrow", quotationsTomorrow);
             tinydb.putListObject("yesterday", quotationsYesterday);
-            Toast.makeText(getBaseContext(), "создается <<БД>> ...", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "DB is created ...");
         }
 
 
@@ -189,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
 
-                Toast.makeText(this, "НАСТРОЙКИ приложения", Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "SETTINGS");
 
                 this.finish();
                 return true;
@@ -200,11 +199,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    //показываем только выбранные курсы валют
+    //show Checked Quotations only
     public List<Quotation> showCheckedQuotations(List<Quotation> quotations) {
-
+        Collections.sort(quotations, Quotation.COMPARE_BY_POSITION);
         List<Quotation> checkedQuotations = new ArrayList<>();
         for (Quotation q : quotations) {
+
             if (storage.hasProperty(q.getAbbreviation())) {
                 q.setPosition(storage.getProperty(q.getAbbreviation()));
             }
@@ -212,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 checkedQuotations.add(q);
             }
         }
+        Collections.sort(checkedQuotations, Quotation.COMPARE_BY_POSITION);
         return checkedQuotations;
     }
 
@@ -231,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
             Date1textView.setText(tinydb.getListObject("yesterday", Quotation.class).get(0).getDate());
             Date2textView.setText(tinydb.getListObject("today", Quotation.class).get(0).getDate());
 
-            Toast.makeText(getBaseContext(), "курсы из <<БД>>", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "currency exchange rates from DB");
         }
 
         if (!tinydb.getListObject("today", Quotation.class).isEmpty()
@@ -264,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
             Date1textView.setText(tinydb.getListObject("today", Quotation.class).get(0).getDate());
             Date2textView.setText(tinydb.getListObject("tomorrow", Quotation.class).get(0).getDate());
 
-            Toast.makeText(getBaseContext(), "УРА! есть курсы на сегодня-завтра", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "courses for tomorrow have already appeared!");
         }
 
         if (tinydb.getListObject("tomorrow", Quotation.class).isEmpty()) {

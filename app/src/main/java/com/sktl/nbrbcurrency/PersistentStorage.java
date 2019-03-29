@@ -3,9 +3,8 @@ package com.sktl.nbrbcurrency;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class PersistantStorage {
+public class PersistentStorage {
     public static final String STORAGE_NAME = "SKTLstorage";
-
 
     private static boolean visited = false;
 
@@ -48,7 +47,7 @@ public class PersistantStorage {
         if (settings == null) {
             init();
         }
-        PersistantStorage.visited = visited;
+        PersistentStorage.visited = visited;
     }
 
 
@@ -64,7 +63,7 @@ public class PersistantStorage {
         if (settings == null) {
             init();
         }
-        return settings.getInt(name, 7777);
+        return settings.getInt(name, 7777);//default value
     }
 
 

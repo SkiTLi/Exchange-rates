@@ -1,7 +1,6 @@
 package com.sktl.nbrbcurrency;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -23,13 +21,13 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     private List<Quotation> mArrayList;
     private Context mContext;
     private int numberItems;
-    private PersistantStorage storage;
+    private PersistentStorage storage;
 
 
     public SettingsRVAdapter(ArrayList<Quotation> arrayList) {
         mArrayList = arrayList;
 
-        storage = new PersistantStorage();
+        storage = new PersistentStorage();
         numberItems = arrayList.size();
     }
 
@@ -51,7 +49,7 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     public void onBindViewHolder(@NonNull final SettingsRVViewHolder myViewHolder, final int position) {
 
 
-        //Заполняем поля viewHolder'а данными из элемента набора данных
+        //We fill the viewHolder fields with data from the data set item
 
         myViewHolder.textViewName.setText(mArrayList.get(position).getName());
         myViewHolder.textViewAbr.setText(mArrayList.get(position).getAbbreviation());
@@ -84,11 +82,11 @@ public class SettingsRVAdapter extends RecyclerView.Adapter<SettingsRVAdapter.Se
     }
 
 
-    //переопределяем методы для перемещения
+    //override methods for moving recyclerView items
 
     /**
-     * если position положительный, значит мы его показываем,
-     * в противном случае - не показываем
+     * if position is positive, then we show it,
+     * otherwise - do not show
      */
 
     @Override

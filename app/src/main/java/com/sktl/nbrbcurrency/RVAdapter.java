@@ -19,7 +19,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVViewHolder> {
 
     private static final String TAG = "sssMA";
     private Context mContext;
-    private PersistantStorage storage;
+    private PersistentStorage storage;
 
     private List<Quotation> mArrayList1;
     private int numberItems1;
@@ -29,7 +29,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVViewHolder> {
 
 
     public RVAdapter(ArrayList<Quotation> arrayList1, ArrayList<Quotation> arrayList2) {
-        storage = new PersistantStorage();
+        storage = new PersistentStorage();
 
         mArrayList1 = arrayList1;
         numberItems1 = arrayList1.size();
@@ -72,7 +72,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVViewHolder> {
         }
 
 
-
     }
 
 
@@ -85,7 +84,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVViewHolder> {
         }
 
     }
-
 
 
 }
